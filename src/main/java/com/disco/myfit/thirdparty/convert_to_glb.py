@@ -1,12 +1,18 @@
 import bpy
 import os
-import sys
+import argparse
 
-
+# python3.12 ~/.workspace/python/parse_html.py -bn develop -gbn develop
 if __name__ == '__main_-':
     # 입력 및 출력 파일 경로
-    input_image = sys.argv[-2]
-    output_glb = sys.argv[-1]
+    parser = argparse.ArgumentParser(description='Get input parameters.', formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('-imagepath', '--image-path', dest='image_path', help='이미지 경로')
+    parser.add_argument('-glbpath', '--glb-path', dest='glb_path', help='glb 경로')
+    args = parser.parse_args()
+    input_image = args.image_path
+    output_glb = args.glb_path
+    print(input_image)
+    print(output_glb)
 
     # 이미지를 텍스쳐로 사용하는 임시 머티리얼 생성
     mat = bpy.data.materials.new(name="Texture Material")
